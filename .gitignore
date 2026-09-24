@@ -4,3 +4,8 @@
 *.out
 .env
 .env.*
+
+.tools/go/
+.tools/gopath/
+.tools/cache/
+.tools/tmp/
