@@ -1,21 +1,22 @@
 # DNA序列模式检索服务
 
-Go与Chi的HTTP项目骨架。当前只有健康检查，检索业务尚未实现。
+Go与Chi的HTTP项目骨架，目前只有健康检查，检索业务尚未实现。
 
-## 本地开发
+## 开发
 
-当前目录内Go1.27.1位于.tools/go，Chi5.2.1依赖位于vendor，版本与校验信息见toolchain.json及go.sum。
+使用WSL共用的Go1.27.1。Chi5.2.1依赖源码保存在各自项目的vendor中，版本由go.mod和go.sum锁定。
 
 ```bash
-source .tools/env.sh
 go version
 go test ./...
 go build -o bin/server ./cmd/server
 ADDR=127.0.0.1:8080 go run ./cmd/server
 ```
 
-环境文件按自身位置定位，不含base或其他题的绝对路径。各副本独立使用本地工具、模块与编译缓存。ADDR默认127.0.0.1:8080，并行启动时可选择空闲端口。
+正常WSL交互终端和登录shell已能直接调用go。若通过不加载用户环境的非登录shell调用，两侧可使用相同的临时设置：
 
-## 从Git恢复本地工具
+```bash
+export PATH="/home/hj/.local/bin:$PATH"
+```
 
-工具二进制和缓存不提交Git。按toolchain.json的source下载官方发行包，核对sha256后解压到.tools，使可执行文件位于.tools/go/bin/go。vendor中保留已锁定的依赖源码，无需另行安装。然后执行上面的source命令。
+ADDR默认127.0.0.1:8080，并行启动可选择空闲端口。工具版本和来源见toolchain.json，不需要source项目环境文件。
